@@ -12,7 +12,7 @@ from oauth2client.tools import run
 CLIENT_SECRET_FILE = 'client_secret.json'
 
 # Check https://developers.google.com/gmail/api/auth/scopes for all available scopes
-OAUTH_SCOPE = 'https://www.googleapis.com/auth/gmail.compose'
+OAUTH_SCOPE = 'https://mail.google.com/'
 
 # Location of the credentials storage file
 STORAGE = Storage('gmail.storage')
@@ -33,7 +33,7 @@ http = credentials.authorize(http)
 gmail_service = build('gmail', 'v1', http=http)
 
 # Retrieve a page of threads
-threads = gmail_service.users().threads().list(userId='me').execute()
+threads = gmail_service.users().threads().list(userId='me',q='subject:stacemail').execute()
 
 # Print ID for each thread
 if threads['threads']:
