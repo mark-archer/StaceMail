@@ -12,7 +12,7 @@ from oauth2client.tools import run
 CLIENT_SECRET_FILE = 'client_secret.json'
 
 # Check https://developers.google.com/gmail/api/auth/scopes for all available scopes
-OAUTH_SCOPE = 'https://www.googleapis.com/auth/gmail.readonly'
+OAUTH_SCOPE = 'https://www.googleapis.com/auth/gmail.compose'
 
 # Location of the credentials storage file
 STORAGE = Storage('gmail.storage')
