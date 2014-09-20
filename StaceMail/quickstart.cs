@@ -40,13 +40,13 @@ namespace GmailQuickstart
     /// </summary>
     /// @author class@google.com (Gus Class)
     public class Signin : IHttpHandler, IRequiresSessionState, IRouteHandler
-    {
+    {        
         // These come from the APIs console:
         //   https://code.google.com/apis/console
         public static ClientSecrets secrets = new ClientSecrets()
         {
-            ClientId = "YOUR_CLIENT_ID",
-            ClientSecret = "YOUR_CLIENT_SECRET"
+            ClientId = "908130483791-8thn32hhd9k1m72ng26fjav15j6dcrjs.apps.googleusercontent.com",
+            ClientSecret = "doH-t1f3fAIbwhR4Qp1bNEdlc"
         };
 
         // Configuration that you probably don't need to change.
@@ -247,8 +247,7 @@ namespace GmailQuickstart
         /// <param name="requestContext">Information about the request.
         /// </param>
         /// <returns></returns>
-        public IHttpHandler GetHttpHandler(RequestContext
-            requestContext)
+        public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
             var page = BuildManager.CreateInstanceFromVirtualPath
                  ("~/signin.ashx", typeof(IHttpHandler)) as IHttpHandler;

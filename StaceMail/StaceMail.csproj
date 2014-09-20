@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Google.Apis">
-      <HintPath>..\packages\Google.Apis.1.8.1\lib\net40\Google.Apis.dll</HintPath>
+      <HintPath>..\packages\Google.Apis.1.8.2\lib\net40\Google.Apis.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.Auth">
       <HintPath>..\packages\Google.Apis.Auth.1.8.1\lib\net40\Google.Apis.Auth.dll</HintPath>
@@ -44,13 +44,19 @@
       <HintPath>..\packages\Google.Apis.Auth.1.8.1\lib\net40\Google.Apis.Auth.PlatformServices.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.Core">
-      <HintPath>..\packages\Google.Apis.Core.1.8.1\lib\portable-net4+sl4+wp71+win8\Google.Apis.Core.dll</HintPath>
+      <HintPath>..\packages\Google.Apis.Core.1.8.2\lib\portable-net4+sl4+wp71+win8\Google.Apis.Core.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.Gmail.v1">
       <HintPath>..\packages\Google.Apis.Gmail.v1.1.8.1.100\lib\portable-net4+sl4+wp71+win8\Google.Apis.Gmail.v1.dll</HintPath>
     </Reference>
+    <Reference Include="Google.Apis.Oauth2.v2">
+      <HintPath>..\packages\Google.Apis.Oauth2.v2.1.8.1.780\lib\portable-net4+sl4+wp71+win8\Google.Apis.Oauth2.v2.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Apis.PlatformServices">
-      <HintPath>..\packages\Google.Apis.1.8.1\lib\net40\Google.Apis.PlatformServices.dll</HintPath>
+      <HintPath>..\packages\Google.Apis.1.8.2\lib\net40\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Plus.v1">
+      <HintPath>..\packages\Google.Apis.Plus.v1.1.8.1.1650\lib\portable-net4+sl4+wp71+win8\Google.Apis.Plus.v1.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
@@ -75,6 +81,7 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\net45\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -127,6 +134,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="client_secret_.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
