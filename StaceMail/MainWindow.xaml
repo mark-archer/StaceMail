@@ -3,7 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow">
     <Grid>
-        <Button Width="50" Height="50"></Button>
+        <StackPanel>
+            <Button Width="100" Height="50" Click="Go_Click">Go</Button>    
+        </StackPanel>
+        
         
     </Grid>
 </Window>

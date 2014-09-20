@@ -24,5 +24,10 @@ namespace StaceMail
         {
             InitializeComponent();
         }
+
+        private void Go_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
