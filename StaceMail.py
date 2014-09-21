@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 import httplib2
-from email.mime.text import MIMEText
 import base64
 import csv
 
@@ -9,6 +8,7 @@ from apiclient.discovery import build
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.file import Storage
 from oauth2client.tools import run
+from email.mime.text import MIMEText
 from apiclient import errors
 
 
