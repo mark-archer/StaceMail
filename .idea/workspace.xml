@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e59548e-04e3-4ef9-b8e0-e80521ba929f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StaceMail.py" afterPath="$PROJECT_DIR$/StaceMail.py" />
-    </list>
+    <list default="true" id="8e59548e-04e3-4ef9-b8e0-e80521ba929f" name="Default" comment="" />
     <ignored path="StaceMail.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
