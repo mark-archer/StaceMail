@@ -3,6 +3,7 @@
 import httplib2
 from email.mime.text import MIMEText
 import base64
+import csv
 
 from apiclient.discovery import build
 from oauth2client.client import flow_from_clientsecrets
@@ -55,10 +56,11 @@ def get_thread(service, user_id, thread_id):
 
 
 def create_message(sender, to, subject, message_text, thread_id=None, rpl_msg_id_raw=None):
-    message = MIMEText(message_text)
+    message = MIMEText(message_text, 'html')
     message['to'] = to
     message['from'] = sender
     message['subject'] = subject
+
     raw_msg = {}
     if thread_id is not None and rpl_msg_id_raw is not None:
         message['In-Reply-To'] = rpl_msg_id_raw
@@ -91,10 +93,41 @@ def send_message(service, user_id, message_body):
         print 'An error occurred: %s' % error
 
 
+def send_to_email_list(service):
+    headers = None
+    lines = []
+    with open('email_list.csv', 'r') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+        for row in reader:
+            if headers is None:
+                headers = row
+            else:
+                lines.append(row)
+    template = open('email_template.html', 'r').read()
+    for l in lines:
+        email_from = l[0]
+        email_to = l[1]
+        if email_to == "":
+            continue
+        email_subject = l[2]
+        email_body = template
+        for h_index in range(0, len(headers)):
+            header = headers[h_index]
+            value = l[h_index]
+            email_body = email_body.replace('$%s$' % header, value)
+
+        message = create_message(email_from, email_to, email_subject, email_body)
+        send_message(service, 'me', message)
+
 def main():
+
     print('authenticating...'),
     gmail_service = authenticate()
     print "success"
+
+    send_to_email_list(gmail_service)
+    return
+
 
     threads = get_threads(gmail_service, 'StaceMail')
 
