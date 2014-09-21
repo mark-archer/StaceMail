@@ -55,20 +55,33 @@ def get_thread(service, user_id, thread_id):
         print 'An error occurred: %s' % error
 
 
-def create_message(sender, to, subject, message_text, thread_id=None, rpl_msg_id_raw=None):
+def create_message(sender, to, cc, bcc, subject, message_text, thread_id=None, rpl_msg_id_raw=None):
     message = MIMEText(message_text, 'html')
-    message['to'] = to
     message['from'] = sender
+    message['to'] = to
+    message['cc'] = cc
+    message['bcc'] = bcc
     message['subject'] = subject
-
     raw_msg = {}
-    if thread_id is not None and rpl_msg_id_raw is not None:
+    if thread_id is not None and rpl_msg_id_raw:
         message['In-Reply-To'] = rpl_msg_id_raw
         message['References'] = rpl_msg_id_raw
         message['subject'] = 'Re: ' + subject
         raw_msg['threadId'] = thread_id
     raw_msg['raw'] = base64.urlsafe_b64encode(message.as_string())
     return raw_msg
+
+
+def get_last_email_id_in_thread(service, thread_id):
+    thread = get_thread(service, 'me', thread_id)
+    messages = thread['messages']
+    msg_count = len(messages)
+    last_msg = messages[msg_count - 1]
+    msg_id_raw = None
+    for header in last_msg['payload']['headers']:
+        if header['name'].lower() == 'message-id':
+            msg_id_raw = header['value']
+    return msg_id_raw
 
 
 def create_draft(service, user_id, message_body):
@@ -93,76 +106,72 @@ def send_message(service, user_id, message_body):
         print 'An error occurred: %s' % error
 
 
-def send_to_email_list(service):
+def send_to_email_list(service, as_reply=None):
+    # get email list
     headers = None
     lines = []
-    with open('email_list.csv', 'r') as csvfile:
-        reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+    with open('email_list.csv', 'r') as email_list_file:
+        reader = csv.reader(email_list_file, delimiter=',', quotechar='"')
         for row in reader:
+            # first row should be headers
             if headers is None:
                 headers = row
             else:
                 lines.append(row)
+
+    # get template
     template = open('email_template.html', 'r').read()
+
+    # render template for each line in the email list
     for l in lines:
+        # 0-4 should be (from,to,cc,bcc,subject) respectively
         email_from = l[0]
         email_to = l[1]
+        email_cc = l[2]
+        email_bcc = l[3]
+        email_subject = l[4]
+        # if there isn't a value for 'email_to' ignore this line
         if email_to == "":
             continue
-        email_subject = l[2]
+
+        # render the template by replacing $ColumnName$ with the respective row value
         email_body = template
         for h_index in range(0, len(headers)):
             header = headers[h_index]
             value = l[h_index]
             email_body = email_body.replace('$%s$' % header, value)
 
-        message = create_message(email_from, email_to, email_subject, email_body)
+        # go figure out thread_id and rpl_msg_id if it should be sent as a reply
+        thread_id = None
+        rpl_msg_id = None
+        if as_reply or as_reply is None:
+            q = 'subject:%s to:%s' % (email_subject, email_to)
+            threads = get_threads(service, q)
+            if "threads" not in threads.keys():
+                if as_reply:
+                    print "Couldn't find thread with query (%s). Skipping this line." % q
+                    continue
+                else:
+                    print "Couldn't find thread with query (%s). Sending as original message." % q
+            else:
+                if len(threads['threads']) != 1:
+                    print "Warning, found multiple threads (count=%s) for query (%s). Replying to the last one" \
+                          % (len(threads['threads']), q)
+                thread_id = threads['threads'][0]['id']
+                rpl_msg_id = get_last_email_id_in_thread(service,thread_id)
+
+        #build and send the message
+        message = create_message(
+            email_from, email_to, email_cc, email_bcc, email_subject, email_body, thread_id, rpl_msg_id)
         send_message(service, 'me', message)
 
-def main():
 
+def main():
     print('authenticating...'),
     gmail_service = authenticate()
     print "success"
 
-    send_to_email_list(gmail_service)
-    return
-
-
-    threads = get_threads(gmail_service, 'StaceMail')
-
-    to = 'marcher@srcity.org'
-    if "threads" not in threads.keys():
-        message = create_message('mmadink@gmail.com', to, 'StaceMail', 'test with python')
-        send_message(gmail_service, 'me', message)
-
-    # Print ID for each thread
-    else:
-        for thread in threads['threads']:
-            # print thread.keys()
-            thread_id = thread['id']
-
-            t_thread = get_thread(gmail_service, 'me', thread_id)
-            messages = t_thread['messages']
-            msg_count = len(messages)
-            last_msg = messages[msg_count - 1]
-            msg_id_raw = None
-            for header in last_msg['payload']['headers']:
-                if header['name'].lower() == 'message-id':
-                    msg_id_raw = header['value']
-            if msg_id_raw is None:
-                print "Couldn't reply to thread: %s, Message-id is None" % thread_id
-                continue
-
-            print "thread id: %s" % thread_id
-            print "message id: %s" % msg_id_raw
-            print "msg_count: %s" % msg_count
-
-            message = create_message('mmadink@gmail.com', to, 'StaceMail', 'test with python', thread_id, msg_id_raw)
-            #create_draft(gmail_service, 'me', message)
-            send_message(gmail_service, 'me', message)
-            print ''
-        # break;
+    send_to_email_list(gmail_service, as_reply=None)
 
 if __name__ == '__main__':
     main()
