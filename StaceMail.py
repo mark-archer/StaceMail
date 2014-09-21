@@ -158,7 +158,7 @@ def send_to_email_list(service, as_reply=None):
                     print "Warning, found multiple threads (count=%s) for query (%s). Replying to the last one" \
                           % (len(threads['threads']), q)
                 thread_id = threads['threads'][0]['id']
-                rpl_msg_id = get_last_email_id_in_thread(service,thread_id)
+                rpl_msg_id = get_last_email_id_in_thread(service, thread_id)
 
         #build and send the message
         message = create_message(

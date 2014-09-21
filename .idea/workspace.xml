@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e59548e-04e3-4ef9-b8e0-e80521ba929f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/email_list.csv" afterPath="$PROJECT_DIR$/email_list.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StaceMail.py" afterPath="$PROJECT_DIR$/StaceMail.py" />
     </list>
     <ignored path="StaceMail.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,8 +31,8 @@
       <file leaf-file-name="StaceMail.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/StaceMail.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5195652" vertical-offset="2174" max-vertical-offset="3094">
-              <caret line="156" column="48" selection-start-line="156" selection-start-column="48" selection-end-line="156" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.575" vertical-offset="2174" max-vertical-offset="3094">
+              <caret line="159" column="55" selection-start-line="159" selection-start-column="55" selection-end-line="159" selection-end-column="55" />
               <folding>
                 <element signature="e#19#34#0" expanded="true" />
               </folding>
@@ -422,8 +422,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/StaceMail.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5195652" vertical-offset="2174" max-vertical-offset="3094">
-          <caret line="156" column="48" selection-start-line="156" selection-start-column="48" selection-end-line="156" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.575" vertical-offset="2174" max-vertical-offset="3094">
+          <caret line="159" column="55" selection-start-line="159" selection-start-column="55" selection-end-line="159" selection-end-column="55" />
           <folding>
             <element signature="e#19#34#0" expanded="true" />
           </folding>
