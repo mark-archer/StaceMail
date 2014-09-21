@@ -12,6 +12,17 @@ from email.mime.text import MIMEText
 from apiclient import errors
 
 
+def main():
+    print('authenticating...'),
+    gmail_service = authenticate(force_refresh=False)
+    print "success"
+
+    # If as_reply=None it will try to send emails as a reply but if it can't it will send it as a new thread
+    # If as_reply=True it will only send emails that it can send as a reply
+    # If as_reply=False it will send all emails as new threads
+    send_to_email_list(service=gmail_service, as_reply=None)
+
+
 def authenticate(force_refresh=False):
     # Path to the client_secret.json file downloaded from the Developer Console
     client_secret_file_name = 'client_secret.json'
@@ -66,7 +77,7 @@ def create_message(sender, to, cc, bcc, subject, message_text, thread_id=None, r
     if thread_id is not None and rpl_msg_id_raw:
         message['In-Reply-To'] = rpl_msg_id_raw
         message['References'] = rpl_msg_id_raw
-        message['subject'] = 'Re: ' + subject
+        #message['subject'] = 'Re: ' + subject # gmail strips off the 'Re: ' for some reason.  Kind of annoying.
         raw_msg['threadId'] = thread_id
     raw_msg['raw'] = base64.urlsafe_b64encode(message.as_string())
     return raw_msg
@@ -95,42 +106,44 @@ def send_message(service, user_id, message_body):
 
 def send_to_email_list(service, as_reply=None):
     # get email list
-    headers = None
-    lines = []
+    list_headers = None
+    list_lines = []
     with open('email_list.csv', 'r') as email_list_file:
         reader = csv.reader(email_list_file, delimiter=',', quotechar='"')
         for row in reader:
             # first row should be headers
-            if headers is None:
-                headers = row
+            if list_headers is None:
+                list_headers = row
             else:
-                lines.append(row)
+                list_lines.append(row)
 
     # get template
     template = open('email_template.html', 'r').read()
 
     # render template for each line in the email list
-    for l in lines:
+    for list_line in list_lines:
         # 0-4 should be (from,to,cc,bcc,subject) respectively
-        email_from = l[0]
-        email_to = l[1]
-        email_cc = l[2]
-        email_bcc = l[3]
-        email_subject = l[4]
-        # if there isn't a value for 'email_to' ignore this line
-        if email_to == "":
+        email_from = list_line[0]
+        email_to = list_line[1]
+        email_cc = list_line[2]
+        email_bcc = list_line[3]
+        email_subject = list_line[4]
+        # if there isn't at least one address to send to ignore this line
+        if email_to == "" and email_cc == "" and email_bcc == "":
             continue
 
         # render the template by replacing $ColumnName$ with the respective row value
         email_body = template
-        for h_index in range(0, len(headers)):
-            header = headers[h_index]
-            value = l[h_index]
+        for h_index in range(0, len(list_headers)):
+            header = list_headers[h_index]
+            value = list_line[h_index]
             email_body = email_body.replace('$%s$' % header, value)
 
-        # go figure out thread_id and rpl_msg_id if it should be sent as a reply
+        # variables for replying
         thread_id = None
         rpl_msg_id = None
+
+        # if it should be sent as a reply, go figure out thread_id and rpl_msg_id, otherwise they'll be left empty
         if as_reply or as_reply is None:
             q = 'subject:%s to:%s' % (email_subject, email_to)
             threads = get_threads(service, q)
@@ -152,13 +165,6 @@ def send_to_email_list(service, as_reply=None):
             email_from, email_to, email_cc, email_bcc, email_subject, email_body, thread_id, rpl_msg_id)
         send_message(service, 'me', message)
 
-
-def main():
-    print('authenticating...'),
-    gmail_service = authenticate(force_refresh=False)
-    print "success"
-
-    send_to_email_list(service=gmail_service, as_reply=None)
 
 if __name__ == '__main__':
     main()
