@@ -84,19 +84,6 @@ def get_last_email_id_in_thread(service, thread_id):
     return msg_id_raw
 
 
-def create_draft(service, user_id, message_body):
-    try:
-        message = {'message': message_body}
-        draft = service.users().drafts().create(userId=user_id, body=message).execute()
-
-        # print 'Draft id: %s\nDraft message: %s' % (draft['id'], draft['message'])
-
-        return draft
-    except errors.HttpError, error:
-        print 'An error occurred: %s' % error
-        return None
-
-
 def send_message(service, user_id, message_body):
     try:
         message = (service.users().messages().send(userId=user_id, body=message_body).execute())
