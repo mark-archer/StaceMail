@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e59548e-04e3-4ef9-b8e0-e80521ba929f" name="Default" comment="" />
+    <list default="true" id="8e59548e-04e3-4ef9-b8e0-e80521ba929f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/email_template.html" afterPath="$PROJECT_DIR$/email_template.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="StaceMail.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,10 +29,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="StaceMail.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="StaceMail.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StaceMail.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.575" vertical-offset="2174" max-vertical-offset="3094">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2174" max-vertical-offset="3094">
               <caret line="159" column="55" selection-start-line="159" selection-start-column="55" selection-end-line="159" selection-end-column="55" />
               <folding>
                 <element signature="e#19#34#0" expanded="true" />
@@ -38,23 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="email_template.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="email_template.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/email_template.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.038462" vertical-offset="51" max-vertical-offset="1088">
-              <caret line="26" column="59" selection-start-line="26" selection-start-column="59" selection-end-line="26" selection-end-column="59" />
-              <folding>
-                <element signature="n#style#0;n#pre#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="email_list.csv" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/email_list.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.44381386" vertical-offset="0" max-vertical-offset="1088">
+              <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -75,8 +66,8 @@
       <list>
         <option value="$PROJECT_DIR$/template.html" />
         <option value="$PROJECT_DIR$/email_list.csv" />
-        <option value="$PROJECT_DIR$/email_template.html" />
         <option value="$PROJECT_DIR$/StaceMail.py" />
+        <option value="$PROJECT_DIR$/email_template.html" />
       </list>
     </option>
   </component>
@@ -400,9 +391,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/StaceMail.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2174" max-vertical-offset="3094">
+          <caret line="159" column="55" selection-start-line="159" selection-start-column="55" selection-end-line="159" selection-end-column="55" />
+          <folding>
+            <element signature="e#19#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/email_list.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
+        <state vertical-scroll-proportion="0.09371555" vertical-offset="0" max-vertical-offset="907">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
@@ -410,21 +411,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/email_template.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.038462" vertical-offset="51" max-vertical-offset="1088">
-          <caret line="26" column="59" selection-start-line="26" selection-start-column="59" selection-end-line="26" selection-end-column="59" />
-          <folding>
-            <element signature="n#style#0;n#pre#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StaceMail.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.575" vertical-offset="2174" max-vertical-offset="3094">
-          <caret line="159" column="55" selection-start-line="159" selection-start-column="55" selection-end-line="159" selection-end-column="55" />
-          <folding>
-            <element signature="e#19#34#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.44381386" vertical-offset="0" max-vertical-offset="1088">
+          <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
