@@ -155,10 +155,10 @@ def send_to_email_list(service, as_reply=None):
 
 def main():
     print('authenticating...'),
-    gmail_service = authenticate()
+    gmail_service = authenticate(force_refresh=False)
     print "success"
 
-    send_to_email_list(gmail_service, as_reply=None)
+    send_to_email_list(service=gmail_service, as_reply=None)
 
 if __name__ == '__main__':
     main()
