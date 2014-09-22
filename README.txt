@@ -4,6 +4,7 @@ Text following a greater-than sign (>) is something you should type into a shell
 
 Install python 2.7: https://www.python.org/downloads/release/python-278/
     make sure it works by opening PowerShell and typing >python -V.  You should see something like "Python 2.7.8"
+    If it that command doesn't work you might need to restart your computer.
 Get code: https://github.com/mark-archer/StaceMail/archive/master.zip
     unzip it somewhere easy to type like C:\StaceMail
 Setup pip
