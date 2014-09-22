@@ -1,5 +1,10 @@
 #!/usr/bin/python
 
+#TODO: run 
+#   easy_install --upgrade google-api-python-client
+#   easy_install python-gflags
+#   python StaceMail.py
+
 import httplib2
 import base64
 import csv
