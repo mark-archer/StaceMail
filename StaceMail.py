@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
 #TODO: run with PowerShell
-#   easy_install --upgrade google-api-python-client
-#   easy_install python-gflags
+#   pip install --upgrade google-api-python-client
+#   pip install python-gflags
 #   python StaceMail.py
 
 import httplib2

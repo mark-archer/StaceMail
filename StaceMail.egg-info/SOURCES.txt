@@ -1,0 +1,8 @@
+StaceMail.py
+get-pip.py
+setup.py
+StaceMail.egg-info/PKG-INFO
+StaceMail.egg-info/SOURCES.txt
+StaceMail.egg-info/dependency_links.txt
+StaceMail.egg-info/requires.txt
+StaceMail.egg-info/top_level.txt
