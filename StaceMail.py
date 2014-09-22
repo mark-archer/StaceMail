@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-#TODO: run 
+#TODO: run with PowerShell
 #   easy_install --upgrade google-api-python-client
 #   easy_install python-gflags
 #   python StaceMail.py
